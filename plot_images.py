@@ -28,16 +28,9 @@ import scipy
 
 
 
-
-# ITM_files=[put itm files here]
-
-
-
-
 ITA_files=[put ita files here]
 
-#ITM_files.sort()
-ITA_files.sort()
+
 
 
 
@@ -46,11 +39,6 @@ for file_ix,file in enumerate(ITA_files):
 
 
     fs=Path(file).stem
-
-    
-   
-
-   # I = pySPM.ITM(ITM_files[file_ix])
     A = pySPM.ITA(file)
     
 
