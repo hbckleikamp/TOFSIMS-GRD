@@ -44,12 +44,12 @@ Calibrants=["Na+","K+","Ca+","CH2+","CH3+","C2H3+","C3H5+","C4H7+","C6H5+","C4H7
             ]
 
 #Fiber specific calibrants
-cfile="C:/Wout_features/Sheath_calibrants.tsv"
+cfile=calibrant_file #put calibrant tsv file here
 csd=pd.read_csv(cfile,sep="\t")
 exCalibrants=csd["ToF-SIMS assignment"].tolist() #extended calibrants (used for 3D ppm calibration)
 
 emass=0.000548579909 #mass electron
-elements=pd.read_csv("C:/Wout_features/utils/natural_isotope_abundances.tsv",sep="\t") #Nist isotopic abundances and monisiotopic masses
+elements=pd.read_csv("natural_isotope_abundances.tsv",sep="\t") #Nist isotopic abundances and monisiotopic masses
 elements=elements[elements["Standard Isotope"]].set_index("symbol")["Relative Atomic Mass"]
 elements=pd.concat([elements,pd.Series([-emass,emass],index=["+","-"])]) #add charges
 
@@ -189,41 +189,9 @@ def savgol2d( z, window_size, order):
 
 #%%
 
-itmfiles=["E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot VIII.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot IV.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot VIIa.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot VIIb.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_cableBacteria for XPS.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Oregon.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide I spot II.itm",
-# "E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide I spot III.itm",
-# "E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide I spot III_2ndpart.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot III.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot IV.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot IX.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot V.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot VI.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot VII.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot VIII.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot II.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot III.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot IV.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot VI.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot VII.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot VIII.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/P_Oregon.itm",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/P_Slide I spot VI.itm"]
+itmfiles=[] #put files here
 
-#testing files
-#itmfiles=["E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide I spot II.itm"]
-#itmfiles=["E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/P_Oregon.itm"]
-#itmfiles=["E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/P_Slide I spot VI.itm"]
-#itmfiles=["E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot VIII.itm"]
-# #itmfiles=["E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/P_Slide I spot VI.itm"]
-#itmfiles=["E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot IV.itm"]
-#custom mass calc
 
-#itmfiles=["E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_cableBacteria for XPS.itm"]
 
 grd_exe="C:/Program Files (x86)/ION-TOF/SurfaceLab 6/bin/ITRawExport.exe"
 
