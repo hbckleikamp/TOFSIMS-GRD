@@ -29,42 +29,12 @@ import scipy
 
 
 
-#add plots of after!
+# ITM_files=[put itm files here]
 
 
-# ITM_files=["E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria/N_Slide I spot VIII.itm",
-# "E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria/N_Slide I spot IV.itm",
-# "E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria/N_Slide I spot VIIa.itm",
-# "E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria/N_Slide I spot VIIb.itm"]
 
 
-ITA_files=["E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Oregon_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/P_Oregon_0.ita"]
-
-ITA_files=["E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot VIII_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot IV_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot VIIa_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240117_cablebacteria_backup/N_Slide I spot VIIb_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/P_Slide I spot VI_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_cableBacteria for XPS_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Oregon_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide I spot II_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide I spot III_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide I spot III_2ndpart_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot III_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot IV_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot IX_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot V_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot VI_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot VII_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide II spot VIII_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot II_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot III_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot IV_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot VI_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot VII_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/N_Slide III spot VIII_0.ita",
-"E:/Antwerp/ToF-SIMS Louvain/20240131_CableBacteria/P_Oregon_0.ita"]
+ITA_files=[put ita files here]
 
 #ITM_files.sort()
 ITA_files.sort()
@@ -117,18 +87,13 @@ for file_ix,file in enumerate(ITA_files):
         xdiff=(meta_S['stageposition_x']["float"]-meta_I['stageposition_x']["float"])*1e6/scale_x
         ydiff=(meta_S['stageposition_y']["float"]-meta_I['stageposition_y']["float"])*1e6/scale_y
 
-        
-
-        
-    # #works for "E:/Antwerp/ToF-SIMS Louvain/20231107_cablebacteria/P_Fiber sheets_3D_0,1nA_Bi3_5_0.ita"
+    
         xstart=(sx-xlen+xdiff)/2
         ystart=(sy-ylen+ydiff)/2
     
-    # # #works for "E:/Antwerp/ToF-SIMS Louvain/20231107_cablebacteria/P_Fiber sheets_3D_0,1nA_Bi3_4_0.ita"
+        #not 100% sure how to correct for drift
         # xstart=(sx-xlen)/2
         # ystart=(sy-ylen)/2
-        
-        # #works for "E:/Antwerp/ToF-SIMS Louvain/20231107_cablebacteria/P_Fiber sheets_3D_0,1nA_Bi3_3_0.ita"
         # xstart=(sx-xlen)/2-xdiff
         # ystart=(sy-ylen)/2-ydiff
             
@@ -169,12 +134,7 @@ for file_ix,file in enumerate(ITA_files):
     plt.xlabel(u"\u03bcm")
     plt.ylabel(u"\u03bcm")
 
-    #fig.savefig(fs+"_SI.png",dpi=1000)
     fig.savefig(file.replace(Path(file).suffix,"_SI.png"),dpi=1000)
     
 
-    #% Access depth profile
-    #scans=np.arange(I.get_summary()["Scans"])
-    #scans=np.arange(I.Nscan)
-    
    
